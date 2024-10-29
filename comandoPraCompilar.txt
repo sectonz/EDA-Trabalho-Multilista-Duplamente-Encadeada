@@ -17,3 +17,6 @@ make rebuild
 
 # Ver informações de debug
 make debug
+
+# Apos o make: 
+./programa
