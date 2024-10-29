@@ -25,13 +25,13 @@ typedef struct multilista_duplamente_encadeada{
 
 void exibirTexto(descritor p);
 
-int buscaPalavra(descritor p,string s);
+int buscaPalavra(descritor p,char[] s);
 
-int removePalavra(descritor p,string s);
+int removePalavra(descritor p,char[] s);
 
 int removeCoordenada(descritor p,int linha,int coluna);
 
-void exibirTotalOcorrenciasDePalavra(descritor p,string s);
+void exibirTotalOcorrenciasDePalavra(descritor p,char[] s);
 
 void exibirTotalPalavras(descritor p);
 
@@ -39,5 +39,5 @@ void editaPalavra(descritor p,int linha,int coluna);
 
 int insere(descritor p);
 
-void exibirOcorrenciasSubstring(descritor p,string s);
+void exibirOcorrenciasSubstring(descritor p,char[] s);
 
