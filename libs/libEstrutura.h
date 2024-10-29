@@ -1,0 +1,43 @@
+#include "stdio.h"
+#include "stdlib.h"
+#include "string.h"
+
+#define tam_palavra 20
+
+typedef struct informacoes{ 
+    char palavra[tam_palavra];
+    int linha, coluna;
+    struct informacoes *frente;
+    struct informacoes *tras;
+    }palavra;
+
+typedef struct noMDE{
+    palavra *palavras;
+    struct noMDE *cima;
+    struct noMDE *baixo;
+    int numPalavras;
+    }linha;
+
+typedef struct multilista_duplamente_encadeada{
+    int numLinhas;
+    linha *multilista;
+    }descritor;
+
+void exibirTexto(descritor p);
+
+int buscaPalavra(descritor p,string s);
+
+int removePalavra(descritor p,string s);
+
+int removeCoordenada(descritor p,int linha,int coluna);
+
+void exibirTotalOcorrenciasDePalavra(descritor p,string s);
+
+void exibirTotalPalavras(descritor p);
+
+void editaPalavra(descritor p,int linha,int coluna);
+
+int insere(descritor p);
+
+void exibirOcorrenciasSubstring(descritor p,string s);
+
