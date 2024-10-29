@@ -2,5 +2,18 @@ O seguinte comando funciona apenas para a main, nao esta incluindo as libs. Send
 
 gcc arquivo.c `pkg-config --cflags --libs gtk+-3.0` && ./a.out
 
+Usar sempre o make file!
 
+Tutorial:
 
+# Compilação normal
+make
+
+# Limpar arquivos compilados
+make clean
+
+# Recompilar tudo
+make rebuild
+
+# Ver informações de debug
+make debug
