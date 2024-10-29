@@ -1,7 +1,4 @@
 #include "libMain.h"
-#include <gtk/gtk.h>
-
-
 
 char* abrirDialogoArquivo() {
     char* caminhoArquivo = NULL;
@@ -24,4 +21,35 @@ char* abrirDialogoArquivo() {
     while (gtk_events_pending()) gtk_main_iteration();
 
     return caminhoArquivo;
+}
+
+void printaPalavra(char p[]){
+    for(int i = 0;p[i] != '\0';i++){
+        printf("%c",p[i]);
+    }
+
+}
+
+void leArquivo(descritor *p){
+
+    char* caminho = abrirDialogoArquivo();
+
+    if (caminho != NULL) {
+        // printf("Arquivo selecionado: %s\n", caminho);
+        
+        FILE *arq = fopen(caminho,"r");
+        
+        while(fgets(linha, sizeof(linha), arq) != NULL){
+            
+        }
+
+
+        free(caminho);
+    } else {
+        printf("Nenhum arquivo selecionado\n");
+    }
+
+
+
+
 }

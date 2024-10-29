@@ -1,6 +1,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "string.h"
+#include "libMain.h"
 
 #define tam_palavra 20
 
@@ -23,21 +24,21 @@ typedef struct multilista_duplamente_encadeada{
     linha *multilista;
     }descritor;
 
-void exibirTexto(descritor p);
+void exibirTexto(descritor *p);
 
-int buscaPalavra(descritor p,char s[]);
+int buscaPalavra(descritor *p,char s[]);
 
-int removePalavra(descritor p,char s[]);
+int removePalavra(descritor *p,char s[]);
 
-int removeCoordenada(descritor p,int linha,int coluna);
+int removeCoordenada(descritor *p,int linha,int coluna);
 
-void exibirTotalOcorrenciasDePalavra(descritor p,char s[]);
+void exibirTotalOcorrenciasDePalavra(descritor *p,char s[]);
 
-void exibirTotalPalavras(descritor p);
+void exibirTotalPalavras(descritor *p);
 
-void editaPalavra(descritor p,int linha,int coluna);
+void editaPalavra(descritor *p,int linha,int coluna);
 
-int insere(descritor p);
+int insere(descritor *p);
 
-void exibirOcorrenciasSubstring(descritor p,char s[]);
+void exibirOcorrenciasSubstring(descritor *p,char s[]);
 
