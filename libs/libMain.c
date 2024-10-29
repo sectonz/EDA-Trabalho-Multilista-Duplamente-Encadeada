@@ -1,4 +1,6 @@
 #include "libMain.h"
+#include <gtk/gtk.h>
+
 
 
 char* abrirDialogoArquivo() {
