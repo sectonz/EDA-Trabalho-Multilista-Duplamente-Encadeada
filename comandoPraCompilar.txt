@@ -1,1 +1,6 @@
+O seguinte comando funciona apenas para a main, nao esta incluindo as libs. Sendo assim, serve apenas como exemplo de como compilar com as flags do GTK.
+
 gcc arquivo.c `pkg-config --cflags --libs gtk+-3.0` && ./a.out
+
+
+
