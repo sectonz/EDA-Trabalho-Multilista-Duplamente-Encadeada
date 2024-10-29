@@ -15,21 +15,22 @@ LIBS_SOURCES = $(wildcard $(LIBS_DIR)/*.c)
 LIBS_OBJECTS = $(patsubst $(LIBS_DIR)/%.c,$(BUILD_DIR)/%.o,$(LIBS_SOURCES))
 
 # Procura os arquivos principais em diferentes locais possíveis
-MAIN_SOURCE = $(if $(wildcard main.c),main.c,$(if $(wildcard $(SRC_DIR)/main.c),$(SRC_DIR)/main.c,))
-ESTRUTURAS_SOURCE = $(if $(wildcard estruturas.c),estruturas.c,$(if $(wildcard $(SRC_DIR)/estruturas.c),$(SRC_DIR)/estruturas.c,))
+MAIN_SOURCE = $(if $(wildcard main.c),main.c,$(if $(wildcard $(SRC_DIR)/main.c),$(SRC_DIR)/main.c))
+
+#ESTRUTURAS_SOURCE = $(if $(wildcard estruturas.c),estruturas.c,$(if $(wildcard $(SRC_DIR)/estruturas.c),$(SRC_DIR)/estruturas.c,))
 
 # Verifica se os arquivos fonte existem
 ifeq ($(MAIN_SOURCE),)
 $(error Arquivo main.c não encontrado nem no diretório atual nem em src/)
 endif
 
-ifeq ($(ESTRUTURAS_SOURCE),)
-$(error Arquivo estruturas.c não encontrado nem no diretório atual nem em src/)
-endif
+#ifeq ($(ESTRUTURAS_SOURCE),)
+#$(error Arquivo estruturas.c não encontrado nem no diretório atual nem em src/)
+#endif
 
 # Objetos principais
 MAIN_OBJECT = $(BUILD_DIR)/main.o
-ESTRUTURAS_OBJECT = $(BUILD_DIR)/estruturas.o
+#ESTRUTURAS_OBJECT = $(BUILD_DIR)/estruturas.o
 
 # Nome do executável final
 TARGET = programa
@@ -48,7 +49,7 @@ setup:
 	@mkdir -p $(SRC_DIR)
 
 # Link final
-$(TARGET): $(MAIN_OBJECT) $(ESTRUTURAS_OBJECT) $(LIBS_OBJECTS)
+$(TARGET): $(MAIN_OBJECT) $(LIBS_OBJECTS)
 	$(CC) $^ -o $@ $(LDFLAGS)
 
 # Compilação do main.c
@@ -56,8 +57,8 @@ $(MAIN_OBJECT): $(MAIN_SOURCE)
 	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -c $< -o $@
 
 # Compilação do estruturas.c
-$(ESTRUTURAS_OBJECT): $(ESTRUTURAS_SOURCE)
-	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -c $< -o $@
+#$(ESTRUTURAS_OBJECT): $(ESTRUTURAS_SOURCE)
+#	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -c $< -o $@
 
 # Compilação dos arquivos da pasta libs
 $(BUILD_DIR)/%.o: $(LIBS_DIR)/%.c
@@ -76,7 +77,7 @@ rebuild: clean all
 # Imprime informações de debug
 debug:
 	@echo "Main source: $(MAIN_SOURCE)"
-	@echo "Estruturas source: $(ESTRUTURAS_SOURCE)"
+#	@echo "Estruturas source: $(ESTRUTURAS_SOURCE)"
 	@echo "Arquivos na pasta libs: $(LIBS_SOURCES)"
 	@echo "Objetos a serem criados: $(LIBS_OBJECTS)"
 	@echo "Flags de compilação: $(CFLAGS)"
