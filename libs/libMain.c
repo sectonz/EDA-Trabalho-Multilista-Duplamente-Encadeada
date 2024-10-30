@@ -41,8 +41,10 @@ void leArquivo(descritor *p){
             linha linhaAux;
             linhaAux.palavras = NULL;
             linhaAux.numPalavras = 0;
+            linhaAux.cima = NULL;
+            linhaAux.baixo = NULL;
 
-            //insereLinhaNoDesc(p);
+            insereLinhaNoDesc(p, &linhaAux);
 
             line[strcspn(line, "\n")] = '\0'; //retira o \n do final de cada linha
 
@@ -58,7 +60,7 @@ void leArquivo(descritor *p){
 
                 insereNaLinha(p, l, &palavraAux);
 
-                printf("Palavra: %s | linha: %d | coluna: %d\n", palavraAux.palavra, palavraAux.coord.linha, palavraAux.coord.coluna);
+                //printf("Palavra: %s | linha: %d | coluna: %d\n", palavraAux.palavra, palavraAux.coord.linha, palavraAux.coord.coluna);
 
                 c += strlen(token) + 1; //idxProxPalavra = tamPalavraAtual + espaço
 

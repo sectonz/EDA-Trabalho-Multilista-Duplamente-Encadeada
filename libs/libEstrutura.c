@@ -104,3 +104,24 @@ int insereNaLinha(descritor *p, int l, palavra *plvr){
 
     return 1;
 }
+
+int insereLinhaNoDesc(descritor *p, linha *l){
+    if(p->multilista == NULL){
+        p->multilista = l;
+        p->numLinhas += 1;
+        return 1;
+    }
+
+    linha *aux = p->multilista;
+
+    while(aux->baixo != NULL){
+        aux = aux->baixo;
+    }
+
+    aux->baixo = l;
+    l->cima = aux;
+
+    p->numLinhas += 1;
+
+    return 1;
+}

@@ -48,4 +48,6 @@ int insere(descritor *p);
 
 void exibirOcorrenciasSubstring(descritor *p,char s[]);
 
-int insereNaLinha(descritor *p, int linha, palavra *palavra);
+int insereNaLinha(descritor *p, int l, palavra *plvr);
+
+int insereLinhaNoDesc(descritor *p, linha *l);
