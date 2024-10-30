@@ -80,25 +80,25 @@ int removePalavra(descritor *p,char s[]){
     return 0;
 }
 
-int insereNaLinha(descritor *p, int linha, palavra *palavra){
-    if(linha >= p->numLinhas) return 0; //linha inexistente
+int insereNaLinha(descritor *p, int l, palavra *plvr){
+    if(l >= p->numLinhas) return 0; //linha inexistente
 
-    struct noMDE *aux = p->multilista;
+    linha *aux = p->multilista;
 
     int i = 0;
-    while(i != linha){
+    while(i != l){
         aux = aux->baixo;
         i++;
     }
 
-    struct informacoes *aux2 = aux->palavras;
+    palavra *aux2 = aux->palavras;
 
     while(aux2->frente != NULL){
         aux2 = aux2->frente;
     }
 
-    aux2->frente = palavra;
-    palavra->tras = aux2;
+    aux2->frente = plvr;
+    plvr->tras = aux2;
 
     aux->numPalavras += 1;
 
