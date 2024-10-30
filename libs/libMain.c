@@ -32,50 +32,62 @@ void leArquivo(descritor *p){
         
         FILE *arq = fopen(caminho,"r");
 
+        if(arq==NULL){
+            printf("Erro ao abrir o arquivo!\n");
+            free(caminho);
+            return;
+        }
+
         char line[50];
         int l = 0;
         int c = 0;
         
         while(fgets(line, sizeof(line), arq) != NULL){
 
-            linha linhaAux;
-            linhaAux.palavras = NULL;
-            linhaAux.numPalavras = 0;
-            linhaAux.cima = NULL;
-            linhaAux.baixo = NULL;
+            linha *linhaAux = (linha*)malloc(sizeof(linha));
 
-            insereLinhaNoDesc(p, &linhaAux);
+            linhaAux->palavras = NULL;
+            linhaAux->numPalavras = 0;
+            linhaAux->cima = NULL;
+            linhaAux->baixo = NULL;
 
             line[strcspn(line, "\n")] = '\0'; //retira o \n do final de cada linha
-
             char *token = strtok(line, " ");
+
 
             //printf("Linha: %d\n", l);
 
-            do{
-                palavra palavraAux;
-                strcpy(palavraAux.palavra,token);
-                palavraAux.coord.linha = l;
-                palavraAux.coord.coluna = c;
-                palavraAux.frente = NULL;
-                palavraAux.tras = NULL;
+            palavra *prevPalavra = NULL;
 
-                insereNaLinha(p, l, &palavraAux);
-
-                //printf("Palavra: %s | linha: %d | coluna: %d\n", palavraAux.palavra, palavraAux.coord.linha, palavraAux.coord.coluna);
-
-                c += strlen(token) + 1; //idxProxPalavra = tamPalavraAtual + espaço
-
-                token = strtok(NULL, " ");
-            }while(token);
-
-            l++;
-            c = 0;
-            //printf("\n");
-
-            free(token);
+            while (token) {
+                
+                // Aloca nova palavra
+                palavra *palavraAux = (palavra*)malloc(sizeof(palavra));
+                  
+                // Copia a palavra com limite de tamanho
+                strncpy(palavraAux->palavra, token, 19);
+                palavraAux->palavra[19] = '\0';
+                palavraAux->coord.linha = l;
+                palavraAux->coord.coluna = c;
+                palavraAux->frente = NULL;
+                palavraAux->tras = prevPalavra; 
+                // Liga a palavra na estrutura
+                if (prevPalavra) {
+                    prevPalavra->frente = palavraAux;
+                } else {
+                    linhaAux->palavras = palavraAux;
+            }
+            
+            prevPalavra = palavraAux;
+            linhaAux->numPalavras++;
+            
+            c += strlen(token) + 1;
+            token = strtok(NULL, " ");
         }
-
+            insereLinhaNoDesc(p, linhaAux);
+            l++;
+        }
+        fclose(arq);
         free(caminho);
     } else {
         printf("Nenhum arquivo selecionado\n");
