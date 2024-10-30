@@ -61,10 +61,10 @@ int removePalavra(descritor *p,char s[]){
         aux2 = aux1->palavras;
         while(aux2){    
             if(strcmp(aux2->palavra, s) == 0){
-                if(aux->tras != NULL){
+                if(aux2->tras != NULL){
                     aux2->tras->frente = aux2->frente;
                 }
-                if(aux->frente != NULL){
+                if(aux2->frente != NULL){
                     aux2->frente->tras = aux2->tras;
                 }
                 aux2->frente = NULL;
@@ -78,4 +78,29 @@ int removePalavra(descritor *p,char s[]){
     }
 
     return 0;
+}
+
+int insereNaLinha(descritor *p, int linha, palavra *palavra){
+    if(linha >= p->numLinhas) return 0; //linha inexistente
+
+    struct noMDE *aux = p->multilista;
+
+    int i = 0;
+    while(i != linha){
+        aux = aux->baixo;
+        i++;
+    }
+
+    struct informacoes *aux2 = aux->palavras;
+
+    while(aux2->frente != NULL){
+        aux2 = aux2->frente;
+    }
+
+    aux2->frente = palavra;
+    palavra->tras = aux2;
+
+    aux->numPalavras += 1;
+
+    return 1;
 }

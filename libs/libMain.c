@@ -50,7 +50,7 @@ void leArquivo(descritor *p){
                 plvra.coord.linha = l;
                 plvra.coord.coluna = c;
 
-                //insereNaLinha(p, plvra);
+                insereNaLinha(p, l, &plvra);
 
                 printf("Palavra: %s | linha: %d | coluna: %d\n", plvra.palavra, plvra.coord.linha, plvra.coord.coluna);
 
