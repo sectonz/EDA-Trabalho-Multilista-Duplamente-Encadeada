@@ -38,6 +38,8 @@ void leArquivo(descritor *p){
         
         while(fgets(linha, sizeof(linha), arq) != NULL){
 
+            linha[strcspn(linha, "\n")] = '\0'; //retira o \n do final de cada linha
+
             char *token = strtok(linha, " ");
 
             printf("Linha: %d\n", l);
@@ -45,13 +47,14 @@ void leArquivo(descritor *p){
             do{
                 palavra plvra;
                 plvra.palavra = token;
-                plvra.linha = l;
-                plvra.coluna = c;
+                plvra.coord.linha = l;
+                plvra.coord.coluna = c;
 
                 //insereNaLinha(p, plvra);
-                printf("Palavra: %s | linha: %d | coluna: %d\n", plvra.palavra, plvra.linha, plvra.coluna);
 
-                c += sizeof(token)/3 + 1; //idxProxPalavra = tamPalavraAtual + espaço
+                printf("Palavra: %s | linha: %d | coluna: %d\n", plvra.palavra, plvra.coord.linha, plvra.coord.coluna);
+
+                c += strlen(token) + 1; //idxProxPalavra = tamPalavraAtual + espaço
 
                 token = strtok(NULL, " ");
             }while(token);
@@ -60,6 +63,7 @@ void leArquivo(descritor *p){
             c = 0;
 
             printf("\n");
+            
             //insereLinhaNoDesc(p)
         }
 
