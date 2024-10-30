@@ -4,7 +4,7 @@ void exibirTexto(descritor *p){
     linha *aux1 = p->multilista; 
     palavra *aux2;
 
-    if(!aux1){
+    if(!aux1 || !p){
         printf("Arquivo vazio!");
         return;
     }
@@ -12,8 +12,7 @@ void exibirTexto(descritor *p){
     while(aux1){
         aux2 = aux1->palavras;
         while(aux2){
-            printaPalavra(aux2->palavra);
-            printf(" ");    
+            printf("%s",aux2->palavra);
             aux2 = aux2->frente;
         }
         printf("\n");
