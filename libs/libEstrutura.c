@@ -167,7 +167,6 @@ int insereNaLinha(descritor *p, int l, palavra *plvr){
         aux = aux->baixo;
         i++;
     }
-
     if(aux->palavras == NULL){
         aux->palavras = plvr;
         aux->numPalavras += 1;

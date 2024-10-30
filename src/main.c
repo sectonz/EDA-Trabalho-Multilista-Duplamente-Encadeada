@@ -11,9 +11,9 @@ int main() {
 
     leArquivo(&p);
     
-    //printaEstrutura(&p);
+    printaEstrutura(&p);
 
-    printf("Palavra: %s\n", p.multilista->palavras->palavra);
+    //printf("Palavra: %s\n", p.multilista->baixo->palavras->frente->palavra);
 
     return 0;
 }
