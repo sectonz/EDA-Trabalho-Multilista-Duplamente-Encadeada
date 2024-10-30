@@ -50,13 +50,15 @@ void leArquivo(descritor *p){
 
             char *token = strtok(line, " ");
 
-            printf("Linha: %d\n", l);
+            //printf("Linha: %d\n", l);
 
             do{
                 palavra palavraAux;
                 palavraAux.palavra = token;
                 palavraAux.coord.linha = l;
                 palavraAux.coord.coluna = c;
+                palavraAux.frente = NULL;
+                palavraAux.tras = NULL;
 
                 insereNaLinha(p, l, &palavraAux);
 
@@ -78,5 +80,39 @@ void leArquivo(descritor *p){
     } else {
         printf("Nenhum arquivo selecionado\n");
     }
+}
+
+void printaEstrutura(descritor *p){
+    if(p->numLinhas == 0){
+        printf("Nao existem linhas no arquivo!\n");
+    }else{
+
+        linha *linhaAux = p->multilista;
+        palavra *palavraAux = NULL;
+
+        printf("Numero de linhas: %d\n", p->numLinhas);
+
+        int l = 0;
+
+        while(linhaAux != NULL){
+            printf("Linha: %d | NumPalavras: %d\n", l, linhaAux->numPalavras);
+
+            if(linhaAux->palavras == NULL){
+                printf("Não existem palavras nessa linha\n");
+            }else{
+                palavraAux = linhaAux->palavras;
+
+                while(palavraAux != NULL){
+                    printf("Palavra: %s | linha: %d | coluna: %d\n", palavraAux->palavra, palavraAux->coord.linha, palavraAux->coord.coluna);
+                    palavraAux = palavraAux->frente;
+                }
+            }
+
+            linhaAux = linhaAux->baixo;
+            l++;
+
+        }
+    }
+
 
 }

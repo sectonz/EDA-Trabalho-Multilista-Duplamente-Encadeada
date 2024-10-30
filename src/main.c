@@ -10,6 +10,8 @@ int main() {
     p.multilista = NULL;
 
     leArquivo(&p);
+    
+    printaEstrutura(&p);
 
     return 0;
 }

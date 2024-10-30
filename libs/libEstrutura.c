@@ -91,6 +91,12 @@ int insereNaLinha(descritor *p, int l, palavra *plvr){
         i++;
     }
 
+    if(aux->palavras == NULL){
+        aux->palavras = plvr;
+        aux->numPalavras += 1;
+        return 1;
+    }
+
     palavra *aux2 = aux->palavras;
 
     while(aux2->frente != NULL){
