@@ -5,9 +5,15 @@
 
 #define tam_palavra 20
 
+typedef struct {
+    int linha;
+    int coluna;
+    }Coordenada;
+
+
 typedef struct informacoes{ 
     char palavra[tam_palavra];
-    int linha, coluna;
+    Coordenada coord;
     struct informacoes *frente;
     struct informacoes *tras;
     }palavra;
@@ -26,7 +32,7 @@ typedef struct multilista_duplamente_encadeada{
 
 void exibirTexto(descritor *p);
 
-int buscaPalavra(descritor *p,char s[]);
+Coordenada buscaPalavra(descritor *p,char s[]);
 
 int removePalavra(descritor *p,char s[]);
 
