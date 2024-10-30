@@ -54,7 +54,7 @@ void leArquivo(descritor *p){
 
             do{
                 palavra palavraAux;
-                palavraAux.palavra = token;
+                strcpy(palavraAux.palavra,token);
                 palavraAux.coord.linha = l;
                 palavraAux.coord.coluna = c;
                 palavraAux.frente = NULL;
@@ -71,7 +71,7 @@ void leArquivo(descritor *p){
 
             l++;
             c = 0;
-            printf("\n");
+            //printf("\n");
 
             free(token);
         }
@@ -97,7 +97,7 @@ void printaEstrutura(descritor *p){
         while(linhaAux != NULL){
             printf("Linha: %d | NumPalavras: %d\n", l, linhaAux->numPalavras);
 
-            if(linhaAux->palavras == NULL){
+            /*if(linhaAux->palavras == NULL){
                 printf("Não existem palavras nessa linha\n");
             }else{
                 palavraAux = linhaAux->palavras;
@@ -106,13 +106,12 @@ void printaEstrutura(descritor *p){
                     printf("Palavra: %s | linha: %d | coluna: %d\n", palavraAux->palavra, palavraAux->coord.linha, palavraAux->coord.coluna);
                     palavraAux = palavraAux->frente;
                 }
-            }
+            }*/
 
-            linhaAux = linhaAux->baixo;
             l++;
+            linhaAux = linhaAux->baixo;
 
         }
     }
-
 
 }

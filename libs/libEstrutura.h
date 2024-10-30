@@ -12,7 +12,7 @@ typedef struct {
 
 
 typedef struct informacoes{ 
-    char *palavra;
+    char palavra[tam_palavra];
     Coordenada coord;
     struct informacoes *frente;
     struct informacoes *tras;
