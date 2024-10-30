@@ -20,7 +20,8 @@ void exibirTexto(descritor *p){
         aux1 = aux1->baixo;
     } 
 }
-
+// TODO
+//RETORNAR TODAS AS APARICOES DE UMA PALAVRA
 Coordenada buscaPalavra(descritor *p, char s[]) {
     linha *aux1 = p->multilista;
     palavra *aux2;
@@ -52,6 +53,41 @@ int removePalavra(descritor *p,char s[]){
     linha *aux1 = p->multilista;
     palavra *aux2;
     
+    int retorna=0;
+
+    if(!aux1){
+        printf("Arquivo vazio!");
+        return retorna;
+    }
+
+    while(aux1) {
+        aux2 = aux1->palavras;
+        while(aux2){    
+            if(strcmp(aux2->palavra, s) == 0){
+                if(aux2->tras != NULL){
+                    aux2->tras->frente = aux2->frente;
+                }
+                if(aux2->frente != NULL){
+                    aux2->frente->tras = aux2->tras;
+                }
+                aux2->frente = NULL;
+                aux2->tras = NULL;
+
+                retorna = 1;
+            }
+            aux2 = aux2->frente;
+        }
+        aux1 = aux1->baixo;
+    }
+
+    return retorna;
+}
+
+int removeCoordenada(descritor *p,int l,int coluna){
+
+    linha *aux1 = p->multilista;
+    palavra *aux2;
+    
     if(!aux1){
         printf("Arquivo vazio!");
         return 0;
@@ -60,11 +96,11 @@ int removePalavra(descritor *p,char s[]){
     while(aux1) {
         aux2 = aux1->palavras;
         while(aux2){    
-            if(strcmp(aux2->palavra, s) == 0){
-                if(aux->tras != NULL){
+            if(aux2->coord.linha == l && aux2->coord.coluna == coluna){
+                if(aux2->tras != NULL){
                     aux2->tras->frente = aux2->frente;
                 }
-                if(aux->frente != NULL){
+                if(aux2->frente != NULL){
                     aux2->frente->tras = aux2->tras;
                 }
                 aux2->frente = NULL;
@@ -79,3 +115,46 @@ int removePalavra(descritor *p,char s[]){
 
     return 0;
 }
+
+void exibirTotalOcorrenciasDePalavra(descritor *p,char s[]){
+
+    linha *aux1 = p->multilista;
+    palavra *aux2;
+    int ocorrencias=0;
+
+    if(!aux1){
+        printf("Arquivo vazio!");
+        return;
+    }
+
+    while(aux1) {
+        aux2 = aux1->palavras;
+        while(aux2){    
+            if(strcmp(aux2->palavra, s) == 0){
+                
+                ocorrencias++;
+
+            }
+            aux2 = aux2->frente;
+        }
+        aux1 = aux1->baixo;
+    }
+
+    printf("Palavra %s aparece %d vezes!",s,ocorrencias);
+}
+
+void exibirTotalPalavras(descritor *p){
+        
+    linha *aux = p->multilista;
+    int total=0;
+    while(aux){
+        
+        total += aux->numPalavras;
+        
+        aux=aux->baixo;
+    }
+
+    printf("Total de palavras do texto: %d",total);
+
+}
+
