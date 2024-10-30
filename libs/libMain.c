@@ -32,27 +32,35 @@ void leArquivo(descritor *p){
         
         FILE *arq = fopen(caminho,"r");
 
-        char linha[50];
+        char line[50];
         int l = 0;
         int c = 0;
         
-        while(fgets(linha, sizeof(linha), arq) != NULL){
+        while(fgets(line, sizeof(line), arq) != NULL){
 
-            linha[strcspn(linha, "\n")] = '\0'; //retira o \n do final de cada linha
+            linha linhaAux;
+            linhaAux.palavras = NULL;
+            linhaAux.numPalavras = 0;
+            linhaAux.cima = NULL;
+            linhaAux.baixo = NULL;
 
-            char *token = strtok(linha, " ");
+            insereLinhaNoDesc(p, &linhaAux);
+
+            line[strcspn(line, "\n")] = '\0'; //retira o \n do final de cada linha
+
+            char *token = strtok(line, " ");
 
             printf("Linha: %d\n", l);
 
             do{
-                palavra plvra;
-                plvra.palavra = token;
-                plvra.coord.linha = l;
-                plvra.coord.coluna = c;
+                palavra palavraAux;
+                palavraAux.palavra = token;
+                palavraAux.coord.linha = l;
+                palavraAux.coord.coluna = c;
 
-                //insereNaLinha(p, plvra);
+                insereNaLinha(p, l, &palavraAux);
 
-                printf("Palavra: %s | linha: %d | coluna: %d\n", plvra.palavra, plvra.coord.linha, plvra.coord.coluna);
+                //printf("Palavra: %s | linha: %d | coluna: %d\n", palavraAux.palavra, palavraAux.coord.linha, palavraAux.coord.coluna);
 
                 c += strlen(token) + 1; //idxProxPalavra = tamPalavraAtual + espaço
 
@@ -61,10 +69,9 @@ void leArquivo(descritor *p){
 
             l++;
             c = 0;
-
             printf("\n");
-            
-            //insereLinhaNoDesc(p)
+
+            free(token);
         }
 
         free(caminho);

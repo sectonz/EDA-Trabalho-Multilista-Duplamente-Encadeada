@@ -47,3 +47,7 @@ void editaPalavra(descritor *p,int linha,int coluna);
 int insere(descritor *p);
 
 void exibirOcorrenciasSubstring(descritor *p,char s[]);
+
+int insereNaLinha(descritor *p, int l, palavra *plvr);
+
+int insereLinhaNoDesc(descritor *p, linha *l);

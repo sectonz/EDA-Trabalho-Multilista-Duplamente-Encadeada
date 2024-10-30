@@ -96,7 +96,11 @@ int removeCoordenada(descritor *p,int l,int coluna){
     while(aux1) {
         aux2 = aux1->palavras;
         while(aux2){    
+<<<<<<< HEAD
             if(aux2->coord.linha == l && aux2->coord.coluna == coluna){
+=======
+            if(strcmp(aux2->palavra, s) == 0){
+>>>>>>> refs/remotes/origin/main
                 if(aux2->tras != NULL){
                     aux2->tras->frente = aux2->frente;
                 }
@@ -158,3 +162,48 @@ void exibirTotalPalavras(descritor *p){
 
 }
 
+int insereNaLinha(descritor *p, int l, palavra *plvr){
+    if(l >= p->numLinhas) return 0; //linha inexistente
+
+    linha *aux = p->multilista;
+
+    int i = 0;
+    while(i != l){
+        aux = aux->baixo;
+        i++;
+    }
+
+    palavra *aux2 = aux->palavras;
+
+    while(aux2->frente != NULL){
+        aux2 = aux2->frente;
+    }
+
+    aux2->frente = plvr;
+    plvr->tras = aux2;
+
+    aux->numPalavras += 1;
+
+    return 1;
+}
+
+int insereLinhaNoDesc(descritor *p, linha *l){
+    if(p->multilista == NULL){
+        p->multilista = l;
+        p->numLinhas += 1;
+        return 1;
+    }
+
+    linha *aux = p->multilista;
+
+    while(aux->baixo != NULL){
+        aux = aux->baixo;
+    }
+
+    aux->baixo = l;
+    l->cima = aux;
+
+    p->numLinhas += 1;
+
+    return 1;
+}
