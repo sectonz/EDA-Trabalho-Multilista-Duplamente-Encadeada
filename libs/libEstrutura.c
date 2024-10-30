@@ -96,11 +96,7 @@ int removeCoordenada(descritor *p,int l,int coluna){
     while(aux1) {
         aux2 = aux1->palavras;
         while(aux2){    
-<<<<<<< HEAD
             if(aux2->coord.linha == l && aux2->coord.coluna == coluna){
-=======
-            if(strcmp(aux2->palavra, s) == 0){
->>>>>>> refs/remotes/origin/main
                 if(aux2->tras != NULL){
                     aux2->tras->frente = aux2->frente;
                 }
