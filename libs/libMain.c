@@ -23,13 +23,6 @@ char* abrirDialogoArquivo() {
     return caminhoArquivo;
 }
 
-void printaPalavra(char p[]){
-    for(int i = 0;p[i] != '\0';i++){
-        printf("%c",p[i]);
-    }
-
-}
-
 void leArquivo(descritor *p){
 
     char* caminho = abrirDialogoArquivo();
@@ -37,10 +30,12 @@ void leArquivo(descritor *p){
     if (caminho != NULL) {
         // printf("Arquivo selecionado: %s\n", caminho);
         
+        char linha[1];
+
         FILE *arq = fopen(caminho,"r");
         
         while(fgets(linha, sizeof(linha), arq) != NULL){
-            
+            // p->multilista->palavras[i].palavra[j];
         }
 
 

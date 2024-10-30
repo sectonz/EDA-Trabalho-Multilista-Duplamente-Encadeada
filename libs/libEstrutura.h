@@ -1,7 +1,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "string.h"
-#include "libMain.h"
+#include "libUtils.h"
 
 #define tam_palavra 20
 

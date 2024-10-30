@@ -12,7 +12,7 @@ void exibirTexto(descritor *p){
     while(aux1){
         while(aux2){
             printaPalavra(aux2->palavra);
-            printf(" ");
+            printf(" ");    
             aux2 = aux2->frente;
         }
         printf("\n");

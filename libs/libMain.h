@@ -6,6 +6,4 @@
 
 char* abrirDialogoArquivo();
 
-void printaPalavra(char p[]);
-
 void leArquivo(descritor *p);
