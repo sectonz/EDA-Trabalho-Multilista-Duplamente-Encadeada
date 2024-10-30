@@ -6,7 +6,7 @@
 #define tam_palavra 20
 
 typedef struct informacoes{ 
-    char palavra[tam_palavra];
+    char *palavra;
     int linha, coluna;
     struct informacoes *frente;
     struct informacoes *tras;

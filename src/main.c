@@ -5,9 +5,11 @@
 
 int main() {
     
-    
-    //TODO
-    //leArquivo(&descritor);
+    descritor p;
+    p.numLinhas = 0;
+    p.multilista = NULL;
+
+    leArquivo(&p);
 
     return 0;
 }
