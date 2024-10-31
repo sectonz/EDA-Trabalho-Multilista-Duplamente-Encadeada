@@ -72,6 +72,8 @@ int removePalavra(descritor *p,char s[]){
                 aux2->frente = NULL;
                 aux2->tras = NULL;
 
+                aux1->numPalavras--;
+
                 retorna = 1;
             }
             aux2 = aux2->frente;
@@ -104,6 +106,8 @@ int removeCoordenada(descritor *p,int l,int coluna){
                 }
                 aux2->frente = NULL;
                 aux2->tras = NULL;
+
+                aux1->numPalavras--;
 
                 return 1;
             }
