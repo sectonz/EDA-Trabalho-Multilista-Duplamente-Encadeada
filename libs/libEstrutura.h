@@ -36,13 +36,13 @@ Coordenada buscaPalavra(descritor *p,char s[]);
 
 int removePalavra(descritor *p,char s[]);
 
-int removeCoordenada(descritor *p,int linha,int coluna);
+int removeCoordenada(descritor *p,int l,int coluna);
 
 void exibirTotalOcorrenciasDePalavra(descritor *p,char s[]);
 
 void exibirTotalPalavras(descritor *p);
 
-void editaPalavra(descritor *p,int linha,int coluna);
+void editarPalavra(descritor *p,int l,int coluna);
 
 int insere(descritor *p);
 

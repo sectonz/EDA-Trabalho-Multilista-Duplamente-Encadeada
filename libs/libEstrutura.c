@@ -12,7 +12,7 @@ void exibirTexto(descritor *p){
     while(aux1){
         aux2 = aux1->palavras;
         while(aux2){
-            printf("%s",aux2->palavra);
+            printf("%s ",aux2->palavra);
             aux2 = aux2->frente;
         }
         printf("\n");
@@ -155,6 +155,36 @@ void exibirTotalPalavras(descritor *p){
 
     printf("Total de palavras do texto: %d",total);
 
+}
+
+void editarPalavra(descritor *p, int l, int coluna){    
+    linha *aux1 = p->multilista;
+
+    //procura a linha
+    int i = 0;
+    while(i != l && aux1 != NULL){
+        aux1 = aux1->baixo;
+        i++;
+    }
+
+    palavra *aux2 = aux1->palavras;
+
+    //procura a coluna
+    while(coluna != aux2->coord.coluna && aux2 != NULL){
+        aux2 = aux2->frente;
+    }
+
+    //recebe a palavra
+    printf("Insira a nova palavra: ");
+    scanf(" %[^\n]", aux2->palavra);
+
+    //Atualiza a coluna das proximas palavras
+    int c = coluna;
+    while(aux2 != NULL){
+        aux2->coord.coluna = c;
+        c += strlen(aux2->palavra) + 1;
+        aux2 = aux2->frente;
+    }
 }
 
 int insereNaLinha(descritor *p, int l, palavra *plvr){

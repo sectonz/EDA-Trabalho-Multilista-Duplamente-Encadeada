@@ -79,6 +79,7 @@ void leArquivo(descritor *p){
             }
 
             l++;
+            c = 0;
         }
 
         fclose(arq);

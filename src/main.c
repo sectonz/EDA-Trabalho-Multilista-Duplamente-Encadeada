@@ -11,8 +11,16 @@ int main() {
 
     leArquivo(&p);
     
-    printaEstrutura(&p);
 
+    //exibirTexto(&p);
+    /*Coordenada c = buscaPalavra(&p, "amigo");
+    printf("linha: %d| coluna: %d\n", c.linha, c.coluna);*/
+
+    editarPalavra(&p, 1, 16);
+
+    exibirTexto(&p);
+
+    printaEstrutura(&p);
     //printf("Palavra: %s\n", p.multilista->baixo->palavras->frente->palavra);
 
     return 0;

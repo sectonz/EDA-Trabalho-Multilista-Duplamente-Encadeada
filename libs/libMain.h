@@ -7,3 +7,5 @@
 char* abrirDialogoArquivo();
 
 void leArquivo(descritor *p);
+
+void printaEstrutura(descritor *p);
