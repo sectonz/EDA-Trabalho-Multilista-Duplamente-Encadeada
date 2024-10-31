@@ -157,7 +157,7 @@ void exibirTotalPalavras(descritor *p){
 
 }
 
-void editarPalavra(descritor *p, int l, int coluna){    
+void editarPalavra(descritor *p, int l, int coluna, char s[]){    
     linha *aux1 = p->multilista;
 
     //procura a linha
@@ -174,9 +174,9 @@ void editarPalavra(descritor *p, int l, int coluna){
         aux2 = aux2->frente;
     }
 
-    //recebe a palavra
-    printf("Insira a nova palavra: ");
-    scanf(" %[^\n]", aux2->palavra);
+    //atualiza a palavra
+    strncpy(aux2->palavra, s, 19);
+    aux2->palavra[19] = '\0';
 
     //Atualiza a coluna das proximas palavras
     int c = coluna;
@@ -185,6 +185,50 @@ void editarPalavra(descritor *p, int l, int coluna){
         c += strlen(aux2->palavra) + 1;
         aux2 = aux2->frente;
     }
+}
+
+int insere(descritor *p,int l,int coluna, char s[]){
+    linha *aux1 = p->multilista;
+
+    //procura a linha
+    int i = 0;
+    while(i != l && aux1 != NULL){
+        aux1 = aux1->baixo;
+        i++;
+    }
+
+    palavra *aux2 = aux1->palavras;
+
+    //procura a coluna
+    while(coluna != aux2->coord.coluna && aux2 != NULL){
+        aux2 = aux2->frente;
+    }
+
+    // Aloca nova palavra
+    palavra *palavraAux = (palavra*) malloc(sizeof(palavra));
+    strncpy(palavraAux->palavra, s, 19);
+    palavraAux->palavra[19] = '\0';
+    palavraAux->coord.linha = l;
+    palavraAux->coord.coluna = coluna;
+
+    //Insere palavra na coordenada
+    aux2->tras->frente = palavraAux;
+    palavraAux->tras = aux2->tras;
+    aux2->tras = palavraAux;
+    palavraAux->frente = aux2;
+
+    //Atualiza a coluna das proximas palavras
+    aux2 = palavraAux;
+    int c = coluna;
+    while(aux2 != NULL){
+        aux2->coord.coluna = c;
+        c += strlen(aux2->palavra) + 1;
+        aux2 = aux2->frente;
+    }
+
+    aux1->numPalavras += 1;
+
+    return 1;
 }
 
 int insereNaLinha(descritor *p, int l, palavra *plvr){

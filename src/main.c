@@ -16,11 +16,12 @@ int main() {
     /*Coordenada c = buscaPalavra(&p, "amigo");
     printf("linha: %d| coluna: %d\n", c.linha, c.coluna);*/
 
-    editarPalavra(&p, 1, 16);
+    printaEstrutura(&p);
 
-    exibirTexto(&p);
+    insere(&p, 1, 16, "o");
 
     printaEstrutura(&p);
+
     //printf("Palavra: %s\n", p.multilista->baixo->palavras->frente->palavra);
 
     return 0;

@@ -42,9 +42,9 @@ void exibirTotalOcorrenciasDePalavra(descritor *p,char s[]);
 
 void exibirTotalPalavras(descritor *p);
 
-void editarPalavra(descritor *p,int l,int coluna);
+void editarPalavra(descritor *p,int l,int coluna, char s[]);
 
-int insere(descritor *p);
+int insere(descritor *p,int l,int coluna, char s[]);
 
 void exibirOcorrenciasSubstring(descritor *p,char s[]);
 
