@@ -8,4 +8,6 @@ char* abrirDialogoArquivo();
 
 void leArquivo(descritor *p);
 
-void printaEstrutura(descritor *p);
+void criaBackup(descritor *p);
+
+void salvaAlteracoes(descritor *p);

@@ -28,6 +28,7 @@ typedef struct noMDE{
 typedef struct multilista_duplamente_encadeada{
     int numLinhas;
     linha *multilista;
+    char *caminhoArquivo;
     }descritor;
 
 void exibirTexto(descritor *p);
@@ -51,3 +52,5 @@ void exibirOcorrenciasSubstring(descritor *p,char s[]);
 int insereNaLinha(descritor *p, int l, palavra *plvr);
 
 int insereLinhaNoDesc(descritor *p, linha *l);
+
+void printaEstrutura(descritor *p);

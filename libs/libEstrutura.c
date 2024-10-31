@@ -285,3 +285,38 @@ int insereLinhaNoDesc(descritor *p, linha *l){
 
     return 1;
 }
+
+void printaEstrutura(descritor *p){
+    if(p->numLinhas == 0){
+        printf("Nao existem linhas no arquivo!\n");
+    }else{
+
+        linha *linhaAux = p->multilista;
+        palavra *palavraAux = NULL;
+
+        printf("Numero de linhas: %d\n", p->numLinhas);
+
+        int l = 0;
+
+        while(linhaAux != NULL){
+            printf("Linha: %d | NumPalavras: %d\n", l, linhaAux->numPalavras);
+
+            if(linhaAux->palavras == NULL){
+                printf("Não existem palavras nessa linha\n");
+            }else{
+                palavraAux = linhaAux->palavras;
+
+                while(palavraAux != NULL){
+                    printf("Palavra: %s | linha: %d | coluna: %d\n", palavraAux->palavra, palavraAux->coord.linha, palavraAux->coord.coluna);
+                    palavraAux = palavraAux->frente;
+                }
+            }
+
+            printf("----------------------------------\n");
+            l++;
+            linhaAux = linhaAux->baixo;
+
+        }
+    }
+
+}

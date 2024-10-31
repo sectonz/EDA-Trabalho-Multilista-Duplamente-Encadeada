@@ -5,9 +5,11 @@
 
 int main() {
     
+
     descritor p;
     p.numLinhas = 0;
     p.multilista = NULL;
+    // p.caminhoArquivo[0] = '\0';
 
     leArquivo(&p);
     

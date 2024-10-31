@@ -25,7 +25,10 @@ char* abrirDialogoArquivo() {
 
 void leArquivo(descritor *p){
 
-    char* caminho = abrirDialogoArquivo();
+    //salva o caminho do arquivo no descritor
+    p->caminhoArquivo = abrirDialogoArquivo();
+    
+    char *caminho = p->caminhoArquivo;
 
     if (caminho != NULL) {
         // printf("Arquivo selecionado: %s\n", caminho);
@@ -89,37 +92,87 @@ void leArquivo(descritor *p){
     }
 }
 
-void printaEstrutura(descritor *p){
-    if(p->numLinhas == 0){
-        printf("Nao existem linhas no arquivo!\n");
-    }else{
+void criaBackup(descritor *p) {
+    
+    char *arquivo = p->caminhoArquivo;
 
-        linha *linhaAux = p->multilista;
-        palavra *palavraAux = NULL;
+    if (strlen(arquivo) == 0) {
+        printf("Caminho do arquivo não definido!\n");
+        return;
+    }
+    
+    char arquivoBackup[256];
+    snprintf(arquivoBackup, sizeof(arquivoBackup), "%sOLD.txt", arquivo);
+    
+    FILE *arquivoOriginal = fopen(arquivo, "r");
+    if (!arquivoOriginal) {
+        printf("Erro ao abrir arquivo original para backup!\n");
+        return;
+    }
+    
+    FILE *novoBackup = fopen(arquivoBackup, "w");
+    if (!novoBackup) {
+        printf("Erro ao criar arquivo de backup!\n");
+        fclose(arquivoOriginal);
+        return;
+    }
+    
+    char buffer[1024];
+    size_t bytesLidos;
+    
+    while ((bytesLidos = fread(buffer, 1, sizeof(buffer), arquivoOriginal)) > 0) {
+        fwrite(buffer, 1, bytesLidos, novoBackup);
+    }
+    
+    fclose(arquivoOriginal);
+    fclose(novoBackup);
+}
 
-        printf("Numero de linhas: %d\n", p->numLinhas);
+void salvaAlteracoes(descritor *p) {
+    
+    char *arquivo = p->caminhoArquivo; 
 
-        int l = 0;
-
-        while(linhaAux != NULL){
-            printf("Linha: %d | NumPalavras: %d\n", l, linhaAux->numPalavras);
-
-            if(linhaAux->palavras == NULL){
-                printf("Não existem palavras nessa linha\n");
-            }else{
-                palavraAux = linhaAux->palavras;
-
-                while(palavraAux != NULL){
-                    printf("Palavra: %s | linha: %d | coluna: %d\n", palavraAux->palavra, palavraAux->coord.linha, palavraAux->coord.coluna);
-                    palavraAux = palavraAux->frente;
-                }
-            }
-
-            printf("----------------------------------\n");
-            l++;
-            linhaAux = linhaAux->baixo;
-
-        }
+    if (!p || !p->multilista) {
+        printf("Estrutura vazia, nada para salvar!\n");
+        return;
+    }
+    
+    if (strlen(arquivo) == 0) {
+        printf("Caminho do arquivo não definido!\n");
+        return;
     }
 
+    criaBackup(p);
+    
+    FILE *novoArquivo = fopen(arquivo, "w");
+    if (!novoArquivo) {
+        printf("Erro ao abrir arquivo para salvar alterações!\n");
+        return;
+    }
+    
+    linha *linhaAtual = p->multilista;
+    while (linhaAtual) {
+        palavra *palavraAtual = linhaAtual->palavras;
+        int ehPrimeira = 1;
+        
+        while (palavraAtual) {
+            if (!ehPrimeira) {
+                fprintf(novoArquivo, " ");
+            }
+            fprintf(novoArquivo, "%s", palavraAtual->palavra);
+            ehPrimeira = 0;
+            palavraAtual = palavraAtual->frente;
+        }
+        
+        if (linhaAtual->baixo) {
+            fprintf(novoArquivo, "\n");
+        }
+        
+        linhaAtual = linhaAtual->baixo;
+    }
+    
+    fclose(novoArquivo);
+    printf("Alterações salvas com sucesso!\n");
 }
+
+
