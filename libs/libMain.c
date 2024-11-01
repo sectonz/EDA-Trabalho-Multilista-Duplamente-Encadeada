@@ -31,7 +31,7 @@ void leArquivo(descritor *p){
     char *caminho = p->caminhoArquivo;
 
     if (caminho != NULL) {
-        // printf("Arquivo selecionado: %s\n", caminho);
+        //printf("Arquivo selecionado: %s\n", caminho);
         
         FILE *arq = fopen(caminho,"r");
 
@@ -40,6 +40,7 @@ void leArquivo(descritor *p){
             free(caminho);
             return;
         }
+
 
         char line[254];
         int l = 0;
@@ -86,7 +87,6 @@ void leArquivo(descritor *p){
         }
 
         fclose(arq);
-        free(caminho);
     }else {
         printf("Nenhum arquivo selecionado\n");
     }
@@ -130,7 +130,7 @@ void criaBackup(descritor *p) {
 
 void salvaAlteracoes(descritor *p) {
     
-    char *arquivo = p->caminhoArquivo; 
+    char *arquivo = p->caminhoArquivo;
 
     if (!p || !p->multilista) {
         printf("Estrutura vazia, nada para salvar!\n");
@@ -172,7 +172,7 @@ void salvaAlteracoes(descritor *p) {
     }
     
     fclose(novoArquivo);
-    printf("Alterações salvas com sucesso!\n");
+    printf("Alterações salvas com sucesso!\n"); //Arrumar
 }
 
 void limpaTela(){
