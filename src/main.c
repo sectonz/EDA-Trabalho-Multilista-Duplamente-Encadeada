@@ -20,13 +20,13 @@ int main() {
 
     printaEstrutura(&p);
 
-    insere(&p, 1, 16, "o");
+    insere(&p, 1, 14, "o");
 
     printaEstrutura(&p);
 
     //printf("Palavra: %s\n", p.multilista->baixo->palavras->frente->palavra);
 
-    procuraSubstring(&p, "sto");
+    procuraSubstring(&p, "ing");
 
     return 0;
 }
