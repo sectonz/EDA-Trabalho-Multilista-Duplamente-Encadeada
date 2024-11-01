@@ -235,6 +235,49 @@ int insere(descritor *p,int l,int coluna, char s[]){
     return 1;
 }
 
+void procuraSubstring(descritor *p, char substr[]){
+    int *listaAparicoes = NULL;
+    int qtdLinhas = 0;
+
+    linha *aux1 = p->multilista;
+    palavra *aux2 = NULL;
+    int i = 0;
+
+    while(aux1 != NULL){
+        aux2 = aux1->palavras;
+        while(aux2 != NULL){
+            if(strstr(aux2->palavra, substr) != NULL){
+                if(listaAparicoes == NULL){
+                    listaAparicoes = malloc(sizeof(int));
+                }else{
+                    listaAparicoes = realloc(listaAparicoes, sizeof(int) * (qtdLinhas+1));
+                }
+                listaAparicoes[qtdLinhas] = i;
+                qtdLinhas++;
+                break;
+            }
+            aux2 = aux2->frente;
+        }
+        aux1 = aux1->baixo;
+        i++;
+    }
+
+    if(listaAparicoes == NULL){
+        printf("Essa substring nao se encontra no texto\n");
+    }else{
+        printf("A substring aparece nas linhas: ");
+        for(i = 0; i < qtdLinhas; i++){
+            printf("%d",listaAparicoes[i]);
+            if(i != qtdLinhas-1){
+                printf(", ");
+            }
+        }
+        printf("\n");
+    }
+
+    free(listaAparicoes);
+}
+
 int insereNaLinha(descritor *p, int l, palavra *plvr){
     if(l >= p->numLinhas) return 0; //linha inexistente
 

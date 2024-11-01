@@ -45,9 +45,11 @@ void exibirTotalPalavras(descritor *p);
 
 void editarPalavra(descritor *p,int l,int coluna, char s[]);
 
+void exibirOcorrenciasSubstring(descritor *p,char s[]);
+
 int insere(descritor *p,int l,int coluna, char s[]);
 
-void exibirOcorrenciasSubstring(descritor *p,char s[]);
+void procuraSubstring(descritor *p, char substr[]);
 
 int insereNaLinha(descritor *p, int l, palavra *plvr);
 

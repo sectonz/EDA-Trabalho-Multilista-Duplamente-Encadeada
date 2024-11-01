@@ -26,5 +26,7 @@ int main() {
 
     //printf("Palavra: %s\n", p.multilista->baixo->palavras->frente->palavra);
 
+    procuraSubstring(&p, "sto");
+
     return 0;
 }
