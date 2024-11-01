@@ -69,6 +69,9 @@ int removePalavra(descritor *p,char s[]){
                 if(aux2->frente != NULL){
                     aux2->frente->tras = aux2->tras;
                 }
+                if(aux1->palavras == aux2){
+                    aux1->palavras = aux2->frente;
+                }
                 aux2->frente = NULL;
                 aux2->tras = NULL;
 
@@ -103,6 +106,9 @@ int removeCoordenada(descritor *p,int l,int coluna){
                 }
                 if(aux2->frente != NULL){
                     aux2->frente->tras = aux2->tras;
+                }
+                if(aux1->palavras == aux2){
+                    aux1->palavras = aux2->frente;
                 }
                 aux2->frente = NULL;
                 aux2->tras = NULL;
