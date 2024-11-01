@@ -180,8 +180,8 @@ void limpaTela(){
 }
 
 void pressEnter(){
-    printf("Aperte enter para continuar...\n");
+    printf("\nAperte enter para continuar...\n");
     getchar();
-    getchar();
+    getchar();  
     limpaTela();
 }
