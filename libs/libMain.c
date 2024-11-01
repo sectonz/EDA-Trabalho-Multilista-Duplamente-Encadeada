@@ -41,7 +41,7 @@ void leArquivo(descritor *p){
             return;
         }
 
-        char line[50];
+        char line[254];
         int l = 0;
         int c = 0;
         
@@ -175,4 +175,13 @@ void salvaAlteracoes(descritor *p) {
     printf("Alterações salvas com sucesso!\n");
 }
 
+void limpaTela(){
+    printf("\033[H\033[J"); 
+}
 
+void pressEnter(){
+    printf("\nAperte enter para continuar...\n");
+    getchar();
+    getchar();  
+    limpaTela();
+}

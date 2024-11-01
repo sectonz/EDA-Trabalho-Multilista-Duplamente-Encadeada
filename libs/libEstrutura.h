@@ -1,9 +1,9 @@
-#include "stdio.h"
-#include "stdlib.h"
-#include "string.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "libUtils.h"
 
-#define tam_palavra 20
+#define tam_palavra 45
 
 typedef struct {
     int linha;
