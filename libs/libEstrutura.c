@@ -405,5 +405,36 @@ void printaEstrutura(descritor *p){
 
         }
     }
+}
 
+void reiniciaDesc(descritor *p){
+    if(p->multilista != NULL){
+        linha *aux = p->multilista;
+
+        if(aux->baixo != NULL){
+            reiniciaLinha(aux);
+            aux = aux->baixo;
+            free(aux->cima);
+        }
+
+        reiniciaLinha(aux);
+        free(aux);
+
+        p->multilista = NULL;
+    }
+}
+
+void reiniciaLinha(linha *l){
+    if(l->palavras != NULL){
+        palavra *aux = l->palavras;
+
+        if(aux->frente != NULL){  
+            aux = aux->frente;
+            free(aux->tras);
+        }
+
+        free(aux);
+
+        l->palavras = NULL;
+    }
 }

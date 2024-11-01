@@ -25,6 +25,7 @@ int main() {
         printf("9) Inserir palavra\n");
         printf("10) Buscar substring\n");
         printf("11) Exibir estrutura detalhada\n");
+        printf("12) Excluir linha\n");
         printf("0) Sair\n");
         printf("\nEscolha uma opção: ");
         scanf("%d", &opcao);
@@ -33,6 +34,9 @@ int main() {
         switch(opcao) {
             case 1:
                 limpaTela();
+                if(p.multilista != NULL){
+                    reiniciaDesc(&p);
+                }
                 printf("Selecione o arquivo de texto...\n");
                 leArquivo(&p);
                 if(p.caminhoArquivo) {

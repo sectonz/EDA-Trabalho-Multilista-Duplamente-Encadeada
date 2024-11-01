@@ -56,3 +56,7 @@ int insereNaLinha(descritor *p, int l, palavra *plvr);
 int insereLinhaNoDesc(descritor *p, linha *l);
 
 void printaEstrutura(descritor *p);
+
+void reiniciaDesc(descritor *p);
+
+void reiniciaLinha(linha *l);
