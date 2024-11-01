@@ -192,6 +192,12 @@ void editarPalavra(descritor *p, int l, int coluna, char s[]){
 }
 
 int insere(descritor *p,int l,int coluna, char s[]){
+    
+    if (!p || !p->multilista || l < 0 || coluna < 0 || !s) {
+        printf("Parâmetros inválidos\n");
+        return 0;
+    }
+    
     linha *aux1 = p->multilista;
 
     //procura a linha
@@ -201,10 +207,34 @@ int insere(descritor *p,int l,int coluna, char s[]){
         i++;
     }
 
-    palavra *aux2 = aux1->palavras;
+    if (!aux1) {
+        printf("Linha %d não encontrada\n", l);
+        return 0;
+    }
 
-    //procura a coluna
-    while(coluna != aux2->coord.coluna && aux2 != NULL){
+    // se não tem palavras na linha ainda
+    if (aux1->palavras == NULL) {
+        palavra *palavraAux = (palavra*) malloc(sizeof(palavra));
+        if (!palavraAux) return 0;
+        
+        strncpy(palavraAux->palavra, s, 19);
+        palavraAux->palavra[19] = '\0';
+        palavraAux->coord.linha = l;
+        palavraAux->coord.coluna = coluna;
+        palavraAux->frente = NULL;
+        palavraAux->tras = NULL;
+        
+        aux1->palavras = palavraAux;
+        aux1->numPalavras++;
+        return 1;
+    }
+
+    palavra *aux2 = aux1->palavras;
+    palavra *anterior = NULL;
+
+    // Encontra a posição correta para inserir
+    while (aux2 != NULL && aux2->coord.coluna < coluna) {
+        anterior = aux2;
         aux2 = aux2->frente;
     }
 
@@ -214,24 +244,38 @@ int insere(descritor *p,int l,int coluna, char s[]){
     palavraAux->palavra[19] = '\0';
     palavraAux->coord.linha = l;
     palavraAux->coord.coluna = coluna;
+    
+    // Insere no início da linha
+    if (anterior == NULL) {
+        palavraAux->frente = aux1->palavras;
+        palavraAux->tras = NULL;
+        aux1->palavras->tras = palavraAux;
+        aux1->palavras = palavraAux;
+    }
+    // Insere no final da linha
+    else if (aux2 == NULL) {
+        palavraAux->frente = NULL;
+        palavraAux->tras = anterior;
+        anterior->frente = palavraAux;
+    }
+    // Insere no meio da linha
+    else {
+        palavraAux->frente = aux2;
+        palavraAux->tras = anterior;
+        anterior->frente = palavraAux;
+        aux2->tras = palavraAux;
+    }
 
-    //Insere palavra na coordenada
-    aux2->tras->frente = palavraAux;
-    palavraAux->tras = aux2->tras;
-    aux2->tras = palavraAux;
-    palavraAux->frente = aux2;
-
-    //Atualiza a coluna das proximas palavras
-    aux2 = palavraAux;
-    int c = coluna;
-    while(aux2 != NULL){
+    // Atualiza a coluna das próximas palavras
+    aux2 = palavraAux->frente;
+    int c = coluna + strlen(palavraAux->palavra) + 1;
+    while (aux2 != NULL) {
         aux2->coord.coluna = c;
         c += strlen(aux2->palavra) + 1;
         aux2 = aux2->frente;
     }
 
-    aux1->numPalavras += 1;
-
+    aux1->numPalavras++;
     return 1;
 }
 

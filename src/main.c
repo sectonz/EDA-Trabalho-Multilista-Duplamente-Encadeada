@@ -22,7 +22,7 @@ int main() {
 
     insere(&p, 1, 16, "o");
 
-    printaEstrutura(&p);
+    // printaEstrutura(&p);
 
     //printf("Palavra: %s\n", p.multilista->baixo->palavras->frente->palavra);
 

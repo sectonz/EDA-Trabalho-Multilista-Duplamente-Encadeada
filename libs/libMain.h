@@ -11,3 +11,7 @@ void leArquivo(descritor *p);
 void criaBackup(descritor *p);
 
 void salvaAlteracoes(descritor *p);
+
+void limpaTela();
+
+void pressEnter();
