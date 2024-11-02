@@ -63,23 +63,21 @@ int removePalavra(descritor *p,char s[]){
         aux2 = aux1->palavras;
         while(aux2){    
             if(strcmp(aux2->palavra, s) == 0){
-                if(aux2->tras != NULL){
-                    aux2->tras->frente = aux2->frente;
-                }
-                if(aux2->frente != NULL){
-                    aux2->frente->tras = aux2->tras;
-                }
-                if(aux1->palavras == aux2){
-                    aux1->palavras = aux2->frente;
-                }
-                aux2->frente = NULL;
-                aux2->tras = NULL;
 
-                aux1->numPalavras--;
-
+                if(aux1->palavras == aux2){ //Se for a primeira palavra
+                    removeCoordenada(p, aux2->coord.linha, aux2->coord.coluna);
+                    printf("Aqui\n");
+                    aux2 = aux1->palavras;
+                }else{
+                    aux2 = aux2->tras;
+                    removeCoordenada(p, aux2->frente->coord.linha, aux2->frente->coord.coluna);
+                    aux2 = aux2->frente;
+                }
+                
                 retorna = 1;
+            }else{
+                aux2 = aux2->frente;
             }
-            aux2 = aux2->frente;
         }
         aux1 = aux1->baixo;
     }
@@ -113,8 +111,9 @@ int removeCoordenada(descritor *p,int l,int coluna){
                 aux2->frente = NULL;
                 aux2->tras = NULL;
 
-                aux1->numPalavras--;
+                free(aux2);
 
+                aux1->numPalavras--;
                 return 1;
             }
             aux2 = aux2->frente;
@@ -149,7 +148,7 @@ void exibirTotalOcorrenciasDePalavra(descritor *p,char s[]){
         aux1 = aux1->baixo;
     }
 
-    printf("Palavra %s aparece %d vezes!",s,ocorrencias);
+    printf("Palavra '%s' aparece %d vezes!",s,ocorrencias);
 }
 
 void exibirTotalPalavras(descritor *p){
@@ -206,7 +205,7 @@ int insere(descritor *p,int l,int coluna, char s[]){
     
     linha *aux1 = p->multilista;
 
-    //procura a linha
+    //Procura a linha
     int i = 0;
     while(i != l && aux1 != NULL){
         aux1 = aux1->baixo;
@@ -218,7 +217,7 @@ int insere(descritor *p,int l,int coluna, char s[]){
         return 0;
     }
 
-    // se não tem palavras na linha ainda
+    //Se não tem palavras na linha ainda
     if (aux1->palavras == NULL) {
         palavra *palavraAux = (palavra*) malloc(sizeof(palavra));
         if (!palavraAux) return 0;
@@ -315,7 +314,7 @@ void procuraSubstring(descritor *p, char substr[]){
     if(listaAparicoes == NULL){
         printf("Essa substring nao se encontra no texto\n");
     }else{
-        printf("A substring aparece nas linhas: ");
+        printf("Substring '%s' aparece nas linhas: ", substr);
         for(i = 0; i < qtdLinhas; i++){
             printf("%d",listaAparicoes[i]);
             if(i != qtdLinhas-1){

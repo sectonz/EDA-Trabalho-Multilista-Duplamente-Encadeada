@@ -25,7 +25,6 @@ int main() {
         printf("9) Inserir palavra\n");
         printf("10) Buscar substring\n");
         printf("11) Exibir estrutura detalhada\n");
-        printf("12) Excluir linha\n");
         printf("0) Sair\n");
         printf("\nEscolha uma opção: ");
         scanf("%d", &opcao);
