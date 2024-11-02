@@ -114,6 +114,16 @@ int removeCoordenada(descritor *p,int l,int coluna){
                 free(aux2);
 
                 aux1->numPalavras--;
+
+                // Atualiza a coluna das palavras
+                int c = 0;
+                aux2 = aux1->palavras;
+                while (aux2 != NULL) {
+                    aux2->coord.coluna = c;
+                    c += strlen(aux2->palavra) + 1;
+                    aux2 = aux2->frente;
+                }
+
                 return 1;
             }
             aux2 = aux2->frente;
@@ -225,7 +235,7 @@ int insere(descritor *p,int l,int coluna, char s[]){
         strncpy(palavraAux->palavra, s, 19);
         palavraAux->palavra[19] = '\0';
         palavraAux->coord.linha = l;
-        palavraAux->coord.coluna = coluna;
+        palavraAux->coord.coluna = 0;
         palavraAux->frente = NULL;
         palavraAux->tras = NULL;
         
@@ -272,8 +282,8 @@ int insere(descritor *p,int l,int coluna, char s[]){
     }
 
     // Atualiza a coluna das próximas palavras
-    aux2 = palavraAux->frente;
-    int c = coluna + strlen(palavraAux->palavra) + 1;
+    int c = anterior->coord.coluna + strlen(anterior->palavra) + 1;
+    aux2 = palavraAux;
     while (aux2 != NULL) {
         aux2->coord.coluna = c;
         c += strlen(aux2->palavra) + 1;
