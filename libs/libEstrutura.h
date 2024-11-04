@@ -33,7 +33,7 @@ typedef struct multilista_duplamente_encadeada{
 
 void exibirTexto(descritor *p);
 
-Coordenada buscaPalavra(descritor *p,char s[]);
+Coordenada* buscaPalavra(descritor *p,char s[],int *numCoords);
 
 int removePalavra(descritor *p,char s[]);
 

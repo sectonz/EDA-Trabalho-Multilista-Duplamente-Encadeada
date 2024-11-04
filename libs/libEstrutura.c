@@ -19,13 +19,14 @@ void exibirTexto(descritor *p){
         aux1 = aux1->baixo;
     } 
 }
-// TODO
-//RETORNAR TODAS AS APARICOES DE UMA PALAVRA
-Coordenada buscaPalavra(descritor *p, char s[]) {
+
+Coordenada* buscaPalavra(descritor *p, char s[],int *numCoords) {
     linha *aux1 = p->multilista;
     palavra *aux2;
-    Coordenada res = {0, 0};
-    
+    Coordenada *res = NULL;
+    *numCoords = 0;
+    int i=1;
+
     if(!aux1){
         printf("Arquivo vazio!");
         return res;
@@ -35,9 +36,11 @@ Coordenada buscaPalavra(descritor *p, char s[]) {
         aux2 = aux1->palavras;
         while(aux2){    
             if(strcmp(aux2->palavra, s) == 0){
-                res.linha = aux2->coord.linha;
-                res.coluna = aux2->coord.coluna;
-                return res;
+                res = realloc(res,sizeof(Coordenada)*i);
+                res[i-1].linha = aux2->coord.linha;
+                res[i-1].coluna = aux2->coord.coluna;
+                (*numCoords)++;
+                i++;
             }
             aux2 = aux2->frente;
         }
