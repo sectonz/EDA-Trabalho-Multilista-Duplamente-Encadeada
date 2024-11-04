@@ -9,7 +9,7 @@ int main() {
     int opcao;
     char palavra[tam_palavra];
     int linha, coluna;
-    Coordenada coord;
+    Coordenada *vetCoord;
 
     do {
         limpaTela();    
@@ -56,10 +56,14 @@ int main() {
                 limpaTela();
                 printf("Digite a palavra a ser buscada: ");
                 scanf("%s", palavra);
-                coord = buscaPalavra(&p, palavra);
-                if(coord.linha != 0 || coord.coluna != 0) {
-                    printf("Palavra encontrada na linha %d, coluna %d\n", 
-                           coord.linha, coord.coluna);
+                int numCoords;
+                vetCoord = buscaPalavra(&p, palavra,&numCoords);
+                if(vetCoord != NULL) {
+                    for(int i = 0;i<numCoords;i++){
+                        printf("Palavra encontrada na linha %d, coluna %d\n", 
+                               vetCoord[i].linha, vetCoord[i].coluna);
+                    }
+                    free(vetCoord);   
                 } else {
                     printf("Palavra não encontrada\n");
                 }
