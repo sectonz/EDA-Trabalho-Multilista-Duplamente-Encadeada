@@ -235,5 +235,5 @@ Além daquelas criadas para o projeto, algumas bibliotecas foram utilizadas a fi
 </br>
 
 ## Autores
-| [<img src="https://avatars.githubusercontent.com/u/95360206?v=4" width=120 height=120 style="border-radius:50%"><br><sub>João Zachêo</sub>](https://github.com/joaozacheo) |  [<img src="https://avatars.githubusercontent.com/u/143731825?v=4.png" height=120 style="border-radius:50%"><br><sub>André Correia</sub>](https://github.com/sectonz) | 
+| [<img src="https://avatars.githubusercontent.com/u/95360206?v=4" width=120 height=120 style="border-radius:50%"><br><sub>João Zachêo</sub>](https://github.com/joaozacheo) |  [<img src="https://github.com/user-attachments/assets/4912b4cc-623d-4596-a202-4a21bde586cb" height=120 style="border-radius:50%"><br><sub>André Correia</sub>](https://github.com/sectonz) | 
 | :---: | :---: |
