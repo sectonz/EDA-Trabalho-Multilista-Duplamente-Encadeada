@@ -194,7 +194,7 @@ O seguinte comando funciona apenas para a *main*, nao esta incluindo as *libs*. 
 gcc arquivo.c `pkg-config --cflags --libs gtk+-3.0` && ./a.out
 ```
 
-Para rodar a aplicação completa, usar sempre o ***make file***!
+Para rodar a aplicação completa, usar sempre o ***makefile***!
 
 ### Tutorial:
 
