@@ -439,6 +439,7 @@ void reiniciaDesc(descritor *p){
         free(aux);
 
         p->multilista = NULL;
+        p->numLinhas = 0;
     }
 }
 
@@ -454,5 +455,6 @@ void reiniciaLinha(linha *l){
         free(aux);
 
         l->palavras = NULL;
+        l->numPalavras = 0;
     }
 }
