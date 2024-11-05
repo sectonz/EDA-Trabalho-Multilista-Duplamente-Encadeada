@@ -6,7 +6,8 @@
   <a href="#estrutura-do-projeto">Estrutura</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#funcionalidades">Funcionalidades</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#compilação">Compilação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#biblioteca-usadas">Bibliotecas</a>
+  <a href="#biblioteca-usadas">Bibliotecas</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#autores">Autores</a>
 </p>
 
 </br>
@@ -17,7 +18,7 @@
 
 ## Descrição
 
-Trabalho desenvolvido no Bacharelado em Ciência da Computação da [UDESC](https://www.udesc.br/cct) campus Joinville.
+Trabalho desenvolvido no curso Bacharelado em Ciência da Computação da [UDESC - CCT](https://www.udesc.br/cct).
 
 O sistema consiste na representação e manipulação de um arquivo de texto em memória através de uma ***Multilista Duplamente Encadeada (multiLDE)***
 
@@ -230,6 +231,8 @@ Além daquelas criadas para o projeto, algumas bibliotecas foram utilizadas a fi
 - <stdlib.h>
 - <string.h>
 - <gtk/gtk.h>
+
+</br>
 
 ## Autores
 | [<img src="https://avatars.githubusercontent.com/u/95360206?v=4" width=120 height=120 style="border-radius:50%"><br><sub>João Zachêo</sub>](https://github.com/joaozacheo) |  [<img src="https://avatars.githubusercontent.com/u/143731825?v=4.png" height=120 style="border-radius:50%"><br><sub>André Correia</sub>](https://github.com/sectonz) | 
