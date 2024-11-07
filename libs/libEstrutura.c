@@ -303,12 +303,26 @@ void procuraSubstring(descritor *p, char substr[]){
 
     linha *aux1 = p->multilista;
     palavra *aux2 = NULL;
-    int i = 0;
+    int i = 0;    
 
     while(aux1 != NULL){
         aux2 = aux1->palavras;
+        char *linhaConcatenada = malloc(sizeof(char));
+        int tamLinha = 0;
+
         while(aux2 != NULL){
-            if(strstr(aux2->palavra, substr) != NULL){
+            
+            tamLinha += 1 + strlen(aux2->palavra);
+            linhaConcatenada = realloc(linhaConcatenada, (sizeof(char)*tamLinha + 1));
+
+            if(aux2->tras == NULL){ //Se for a primeira palavra
+                strcpy(linhaConcatenada, aux2->palavra);
+            }else{
+                strcat(linhaConcatenada, " ");
+                strcat(linhaConcatenada, aux2->palavra);
+            }
+            
+            if(strlen(linhaConcatenada) >= strlen(substr) && strstr(linhaConcatenada, substr) != NULL){
                 if(listaAparicoes == NULL){
                     listaAparicoes = malloc(sizeof(int));
                 }else{
@@ -322,6 +336,7 @@ void procuraSubstring(descritor *p, char substr[]){
         }
         aux1 = aux1->baixo;
         i++;
+        free(linhaConcatenada);
     }
 
     if(listaAparicoes == NULL){

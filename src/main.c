@@ -148,7 +148,7 @@ int main() {
             case 10:
                 limpaTela();
                 printf("Digite a substring a ser buscada: ");
-                scanf("%s", palavra);
+                scanf(" %[^\n]", palavra);
                 procuraSubstring(&p, palavra);
                 pressEnter();
                 break;
