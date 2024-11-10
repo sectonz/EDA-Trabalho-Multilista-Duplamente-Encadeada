@@ -1,5 +1,6 @@
 #include "libEstrutura.h"
 
+// Exibe o texto armazenado na estrutura, imprimindo palavra por palavra em cada linha
 void exibirTexto(descritor *p){
     linha *aux1 = p->multilista; 
     palavra *aux2;
@@ -20,6 +21,8 @@ void exibirTexto(descritor *p){
     } 
 }
 
+// Busca todas as ocorrências de uma palavra no texto e retorna um array de Coordenadas
+// com as posições onde a palavra foi encontrada. Também retorna o número total de ocorrências
 Coordenada* buscaPalavra(descritor *p, char s[],int *numCoords) {
     linha *aux1 = p->multilista;
     palavra *aux2;
@@ -50,6 +53,8 @@ Coordenada* buscaPalavra(descritor *p, char s[],int *numCoords) {
     return res;
 }
 
+// Remove todas as ocorrências de uma palavra específica do texto
+// Retorna 1 se alguma palavra foi removida, 0 caso contrário
 int removePalavra(descritor *p,char s[]){
 
     linha *aux1 = p->multilista;
@@ -88,6 +93,9 @@ int removePalavra(descritor *p,char s[]){
     return retorna;
 }
 
+// Remove uma palavra específica baseado em sua coordenada (linha e coluna)
+// Atualiza as posições das palavras subsequentes na linha
+// Retorna 1 se a palavra foi removida, 0 caso contrário
 int removeCoordenada(descritor *p,int l,int coluna){
 
     linha *aux1 = p->multilista;
@@ -137,6 +145,7 @@ int removeCoordenada(descritor *p,int l,int coluna){
     return 0;
 }
 
+// Conta e exibe o número total de vezes que uma palavra específica aparece no texto
 void exibirTotalOcorrenciasDePalavra(descritor *p,char s[]){
 
     linha *aux1 = p->multilista;
@@ -164,6 +173,7 @@ void exibirTotalOcorrenciasDePalavra(descritor *p,char s[]){
     printf("Palavra '%s' aparece %d vezes!",s,ocorrencias);
 }
 
+// Calcula e exibe o número total de palavras em todo o texto
 void exibirTotalPalavras(descritor *p){
         
     linha *aux = p->multilista;
@@ -179,6 +189,8 @@ void exibirTotalPalavras(descritor *p){
 
 }
 
+// Modifica uma palavra existente em uma coordenada específica (linha e coluna)
+// Atualiza as posições das palavras subsequentes
 void editarPalavra(descritor *p, int l, int coluna, char s[]){    
     linha *aux1 = p->multilista;
 
@@ -209,6 +221,9 @@ void editarPalavra(descritor *p, int l, int coluna, char s[]){
     }
 }
 
+// Insere uma nova palavra em uma posição específica do texto
+// Gerencia as conexões com palavras adjacentes e atualiza posições
+// Retorna 1 se inseriu com sucesso, 0 caso contrário
 int insere(descritor *p,int l,int coluna, char s[]){
     
     if (!p || !p->multilista || l < 0 || coluna < 0 || !s) {
@@ -297,6 +312,8 @@ int insere(descritor *p,int l,int coluna, char s[]){
     return 1;
 }
 
+// Procura uma substring no texto e exibe as linhas onde ela foi encontrada
+// Considera palavras concatenadas com espaço em cada linha
 void procuraSubstring(descritor *p, char substr[]){
     int *listaAparicoes = NULL;
     int qtdLinhas = 0;
@@ -355,6 +372,8 @@ void procuraSubstring(descritor *p, char substr[]){
     free(listaAparicoes);
 }
 
+// Insere uma palavra no final de uma linha específica
+// Retorna 1 se inseriu com sucesso, 0 caso contrário
 int insereNaLinha(descritor *p, int l, palavra *plvr){
     if(l >= p->numLinhas) return 0; //linha inexistente
 
@@ -385,6 +404,8 @@ int insereNaLinha(descritor *p, int l, palavra *plvr){
     return 1;
 }
 
+// Insere uma nova linha no final do texto
+// Retorna 1 se inseriu com sucesso, 0 caso contrário
 int insereLinhaNoDesc(descritor *p, linha *l){
     if(p->multilista == NULL){
         p->multilista = l;
@@ -406,6 +427,8 @@ int insereLinhaNoDesc(descritor *p, linha *l){
     return 1;
 }
 
+// Exibe a estrutura completa do texto, mostrando detalhes de cada linha e palavra
+// Útil para debug e visualização da estrutura de dados
 void printaEstrutura(descritor *p){
     if(p->numLinhas == 0){
         printf("Nao existem linhas no arquivo!\n");
@@ -440,6 +463,7 @@ void printaEstrutura(descritor *p){
     }
 }
 
+// Libera toda a memória alocada para o texto, reiniciando o descritor
 void reiniciaDesc(descritor *p){
     if(p->multilista != NULL){
         linha *aux = p->multilista;
@@ -458,6 +482,7 @@ void reiniciaDesc(descritor *p){
     }
 }
 
+// Função auxiliar que libera a memória alocada para todas as palavras de uma linha
 void reiniciaLinha(linha *l){
     if(l->palavras != NULL){
         palavra *aux = l->palavras;
